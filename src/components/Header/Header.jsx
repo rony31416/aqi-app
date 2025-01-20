@@ -51,19 +51,28 @@ const Header = () => {
 
           {/* Right-Side Buttons */}
           <div className="col-sm-7 d-flex align-items-center justify-content-end part3">
-            <Button className="rounded-circle mr-3">
+
+           <Tooltip title="Theme Change"> 
+           <Button className="rounded-circle mr-3">
               <MdLightMode />
             </Button>
+            </Tooltip>           
+
+            <Tooltip title="Current AQI">
             <Button className="rounded-circle mr-3">
               <TbWorldPin />
             </Button>
+            </Tooltip>
+            <Tooltip title="AI ChatBot">
             <Button className="rounded-circle mr-3">
               <RiChatVoiceAiFill />
             </Button>
+            </Tooltip>
+            <Tooltip title="Notifications">
             <Button className="rounded-circle mr-3">
               <BiSolidBellRing />
             </Button>
-
+            </Tooltip>
             {/* Account Menu */}
             <div className="myAccWrapper">
               <Tooltip title="Account settings">
