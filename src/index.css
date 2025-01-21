@@ -246,7 +246,7 @@ header button.rounded-circle:hover {
 
 .main .sidebarWrapper .sidebar ul .submenu li a:hover{
     color: #1a1a1a !important;
-    background: #dfe6f4 !important;
+    background: #02b1fd !important;
     padding-left: 10px !important;
     border-radius: 10px;
 }
@@ -269,10 +269,12 @@ header button.rounded-circle:hover {
  .main .content{
     width: 84%;
     flex: 0 0 84%;
+   
  }
 
  .right-content{
-    padding: 90px 30px !important;
+    padding: 70px 14px 0px 14px !important;
+    
  }
 
 
@@ -281,10 +283,26 @@ header button.rounded-circle:hover {
     width: 100%;
     flex-wrap: wrap;
  }
+ .right-content .dashboardWrapper .titleContent {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+ }
+.right-content .dashboardWrapper .titleContent h2{
+    font-size: 32px;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-transform: capitalize;
+}
+
+
+
 
  .dashboardWrapper .dashboardBox{
-     width : 99%;
-     height: 100vh;
+     width : 100%;
+     height: 80vh;
  }
 
  .right-content .dashboardWrapper .dashboardBox{
@@ -292,6 +310,10 @@ header button.rounded-circle:hover {
      border-radius: 10px;
      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
      padding: 15px !important;
+ }
+ .right-content .dashboardWrapper .dashboardBox .map-aqi{
+        width: 100%;
+        height: 100%;
  }
 
  .right-content .dashboardWrapper .dashboardBox:hover{
