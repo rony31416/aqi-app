@@ -136,8 +136,7 @@ header button.rounded-circle:hover {
 
 
 .main .sidebarWrapper {
-    width: 30%;
-    flex: 0 0 30%;
+    width: 16%;
     transition: all 0.3s ease-in-out;
 }
 
@@ -265,3 +264,38 @@ header button.rounded-circle:hover {
  .main .sidebarWrapper .sidebar ul .submenuWrapper.colapse .submenu{
      opacity: 1;
  }
+
+
+ .main .content{
+    width: 84%;
+    flex: 0 0 84%;
+ }
+
+ .right-content{
+    padding: 90px 30px !important;
+ }
+
+
+ .dashboardWrapper{
+    gap: 15px;
+    width: 100%;
+    flex-wrap: wrap;
+ }
+
+ .dashboardWrapper .dashboardBox{
+     width : 99%;
+     height: 100vh;
+ }
+
+ .right-content .dashboardWrapper .dashboardBox{
+     background: #fff;
+     border-radius: 10px;
+     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+     padding: 15px !important;
+ }
+
+ .right-content .dashboardWrapper .dashboardBox:hover{
+     background: #f5f5f5;
+
+ }
+ 
