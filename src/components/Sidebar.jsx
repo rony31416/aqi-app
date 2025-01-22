@@ -12,12 +12,15 @@ import { ImNewspaper } from "react-icons/im";
 import { MdMultilineChart } from "react-icons/md";
 import { TbReport } from "react-icons/tb";
 import SettingsIcon from '@mui/icons-material/Settings';
-import { use } from 'react';
+import { use,useContext } from 'react';
+import { Mycontext } from '../App';
 
 const Sidebar = () => {
 
     const [activeTab,setActiveTab] = useState(0); 
     const [isToggleSubMenu,setIsToggleSubMenu] = useState(false);
+
+    const context = useContext(Mycontext);
    
     const isOpenSubMenu=(index) => {
        setActiveTab(index);

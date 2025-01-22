@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, {useContext, useState } from 'react';
 import { Link } from "react-router-dom";
 import logo from '../../assets/images/logo.png';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
+import { MdMenu } from "react-icons/md";
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Tooltip from '@mui/material/Tooltip';
@@ -10,16 +11,21 @@ import { MdOutlineMenuOpen, MdLightMode } from "react-icons/md";
 import { TbWorldPin } from "react-icons/tb";
 import { RiChatVoiceAiFill } from "react-icons/ri";
 import { BiSolidBellRing } from "react-icons/bi";
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import SearchBox from "../SearchBox";
 import '../../index.css';
 import { CgProfile } from "react-icons/cg";
 import { FaShieldAlt } from "react-icons/fa";
+import { Mycontext } from '../../App';
+
+
+
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+
+  
+  const context = useContext(Mycontext);
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -43,35 +49,40 @@ const Header = () => {
 
           {/* Search and Menu Toggle */}
           <div className="col-xs-3 d-flex align-items-center part2 pl-5">
-            <Button className="rounded-circle mr-3">
-              <MdOutlineMenuOpen />
+            <Button className="rounded-circle mr-3" onClick={()=> context.setIsToggleSidebar(!context.isToggleSidebar)}> 
+              
+                {
+                  context.isToggleSidebar ? <MdOutlineMenuOpen /> : <MdMenu />
+                }
+
             </Button>
             <SearchBox />
           </div>
 
+
           {/* Right-Side Buttons */}
           <div className="col-sm-7 d-flex align-items-center justify-content-end part3">
 
-           <Tooltip title="Theme Change"> 
-           <Button className="rounded-circle mr-3">
-              <MdLightMode />
-            </Button>
-            </Tooltip>           
+            <Tooltip title="Theme Change">
+              <Button className="rounded-circle mr-3">
+                <MdLightMode />
+              </Button>
+            </Tooltip>
 
             <Tooltip title="Current AQI">
-            <Button className="rounded-circle mr-3">
-              <TbWorldPin />
-            </Button>
+              <Button className="rounded-circle mr-3">
+                <TbWorldPin />
+              </Button>
             </Tooltip>
             <Tooltip title="AI ChatBot">
-            <Button className="rounded-circle mr-3">
-              <RiChatVoiceAiFill />
-            </Button>
+              <Button className="rounded-circle mr-3">
+                <RiChatVoiceAiFill />
+              </Button>
             </Tooltip>
             <Tooltip title="Notifications">
-            <Button className="rounded-circle mr-3">
-              <BiSolidBellRing />
-            </Button>
+              <Button className="rounded-circle mr-3">
+                <BiSolidBellRing />
+              </Button>
             </Tooltip>
             {/* Account Menu */}
             <div className="myAccWrapper">
@@ -108,7 +119,7 @@ const Header = () => {
               >
                 <MenuItem
                   onClick={handleMenuClose}
-                 
+
                 >
                   <ListItemIcon>
                     <CgProfile fontSize="small" />
@@ -117,7 +128,7 @@ const Header = () => {
                 </MenuItem>
                 <MenuItem
                   onClick={handleMenuClose}
-                
+
                 >
                   <ListItemIcon>
                     <FaShieldAlt fontSize="small" />
@@ -126,7 +137,7 @@ const Header = () => {
                 </MenuItem>
                 <MenuItem
                   onClick={handleMenuClose}
-                 
+
                 >
                   <ListItemIcon>
                     <Logout fontSize="small" />
