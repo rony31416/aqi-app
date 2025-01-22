@@ -74,16 +74,19 @@ const Header = () => {
                 <TbWorldPin />
               </Button>
             </Tooltip>
+
             <Tooltip title="AI ChatBot">
               <Button className="rounded-circle mr-3">
                 <RiChatVoiceAiFill />
               </Button>
             </Tooltip>
+
             <Tooltip title="Notifications">
               <Button className="rounded-circle mr-3">
                 <BiSolidBellRing />
               </Button>
             </Tooltip>
+            
             {/* Account Menu */}
             <div className="myAccWrapper">
               <Tooltip title="Account settings">
