@@ -10,8 +10,6 @@ import { MdOutlineMenuOpen, MdLightMode } from "react-icons/md";
 import { TbWorldPin } from "react-icons/tb";
 import { RiChatVoiceAiFill } from "react-icons/ri";
 import { BiSolidBellRing } from "react-icons/bi";
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import SearchBox from "../SearchBox";
 import '../../index.css';
@@ -63,16 +61,19 @@ const Header = () => {
               <TbWorldPin />
             </Button>
             </Tooltip>
+
             <Tooltip title="AI ChatBot">
             <Button className="rounded-circle mr-3">
               <RiChatVoiceAiFill />
             </Button>
             </Tooltip>
+
             <Tooltip title="Notifications">
             <Button className="rounded-circle mr-3">
               <BiSolidBellRing />
             </Button>
             </Tooltip>
+            
             {/* Account Menu */}
             <div className="myAccWrapper">
               <Tooltip title="Account settings">
