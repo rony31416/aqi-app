@@ -29,11 +29,11 @@ const App = () => {
 
         <Header />
         <div className="main d-flex">
-          <div className={`sidebarWrapper ${isToggleSidebar===true ? 'toggle' : ''}`}>
+          <div className={`sidebarWrapper ${isToggleSidebar===true ? 'toggle' : '' }`}>
             <Sidebar />
           </div>
 
-          <div className={`content ${isToggleSidebar ? 'toggle' : ''}`}>
+          <div className={`content ${isToggleSidebar===true ? 'toggle' : '' }`}>
             <Routes>
               <Route path="/" exact={true} element={<DashBoard />} />
               <Route path="/dashboard" exact={true} element={<DashBoard />} />
