@@ -1,4 +1,4 @@
-import React, {useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from "react-router-dom";
 import logo from '../../assets/images/logo.png';
 import Button from '@mui/material/Button';
@@ -24,7 +24,9 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
-  
+  const [isLogin, setIsLogin] = useState(false);
+
+
   const context = useContext(Mycontext);
 
   const handleMenuOpen = (event) => {
@@ -34,7 +36,7 @@ const Header = () => {
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
- 
+
   return (
     <header className="d-flex align-items-center">
       <div className="container-fluid w-100">
@@ -48,12 +50,12 @@ const Header = () => {
           </div>
 
           {/* Search and Menu Toggle */}
-          <div className="col-xs-3 d-flex align-items-center part2 pl-5">
-            <Button className="rounded-circle mr-3" onClick={()=> context.setIsToggleSidebar(!context.isToggleSidebar)}> 
-              
-                {
-                  context.isToggleSidebar ? <MdOutlineMenuOpen /> : <MdMenu />
-                }
+          <div className="col-xs-3 d-flex align-items-center part2">
+            <Button className="rounded-circle mr-3" onClick={() => context.setIsToggleSidebar(!context.isToggleSidebar)}>
+
+              {
+                context.isToggleSidebar ? <MdOutlineMenuOpen /> : <MdMenu />
+              }
 
             </Button>
             <SearchBox />
@@ -86,69 +88,76 @@ const Header = () => {
                 <BiSolidBellRing />
               </Button>
             </Tooltip>
-            
+
+            {
+              isLogin!==true? <Button className='btn-blue'>Sign In</Button> :
+                <div className="myAccWrapper">
+                  <Tooltip title="Account settings">
+                    <Button className="myAcc d-flex align-items-center" onClick={handleMenuOpen}>
+                      <div className="userImg">
+                        <span className="rounded-circle">
+                          <img
+                            src="https://www.w3schools.com/howto/img_avatar.png"
+                            alt="User Avatar"
+                          />
+                        </span>
+                      </div>
+                      <div className="userInfo">
+                        <h4>Unknown</h4>
+                        <p className="mb-0">@userID</p>
+                      </div>
+                    </Button>
+                  </Tooltip>
+
+                  <Menu
+                    anchorEl={anchorEl}
+                    id="account-menu"
+                    open={open}
+                    onClose={handleMenuClose}
+                    transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                    anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                    sx={{
+                      mt: 1, // Top margin for the menu
+                      "& .MuiMenu-paper": {
+                        padding: "10px", // Padding for the entire menu
+                      },
+                    }}
+                  >
+                    <MenuItem
+                      onClick={handleMenuClose}
+
+                    >
+                      <ListItemIcon>
+                        <CgProfile fontSize="small" />
+                      </ListItemIcon>
+                      My profile
+                    </MenuItem>
+                    <MenuItem
+                      onClick={handleMenuClose}
+
+                    >
+                      <ListItemIcon>
+                        <FaShieldAlt fontSize="small" />
+                      </ListItemIcon>
+                      Reset Password
+                    </MenuItem>
+                    <MenuItem
+                      onClick={handleMenuClose}
+
+                    >
+                      <ListItemIcon>
+                        <Logout fontSize="small" />
+                      </ListItemIcon>
+                      Logout
+                    </MenuItem>
+                  </Menu>
+                </div>
+            }
+
+
+
             {/* Account Menu */}
-            <div className="myAccWrapper">
-              <Tooltip title="Account settings">
-                <Button className="myAcc d-flex align-items-center" onClick={handleMenuOpen}>
-                  <div className="userImg">
-                    <span className="rounded-circle">
-                      <img
-                        src="https://www.w3schools.com/howto/img_avatar.png"
-                        alt="User Avatar"
-                      />
-                    </span>
-                  </div>
-                  <div className="userInfo">
-                    <h4>Unknown</h4>
-                    <p className="mb-0">@userID</p>
-                  </div>
-                </Button>
-              </Tooltip>
 
-              <Menu
-                anchorEl={anchorEl}
-                id="account-menu"
-                open={open}
-                onClose={handleMenuClose}
-                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-                sx={{
-                  mt: 1, // Top margin for the menu
-                  "& .MuiMenu-paper": {
-                    padding: "10px", // Padding for the entire menu
-                  },
-                }}
-              >
-                <MenuItem
-                  onClick={handleMenuClose}
-
-                >
-                  <ListItemIcon>
-                    <CgProfile fontSize="small" />
-                  </ListItemIcon>
-                  My profile
-                </MenuItem>
-                <MenuItem
-                  onClick={handleMenuClose}
-
-                >
-                  <ListItemIcon>
-                    <FaShieldAlt fontSize="small" />
-                  </ListItemIcon>
-                  Reset Password
-                </MenuItem>
-                <MenuItem
-                  onClick={handleMenuClose}
-
-                >
-                  <ListItemIcon>
-                    <Logout fontSize="small" />
-                  </ListItemIcon>
-                  Logout
-                </MenuItem>
-              </Menu>
-            </div>
           </div>
         </div>
       </div>

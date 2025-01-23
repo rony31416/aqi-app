@@ -10,6 +10,18 @@ body {
     background-color: #ebe9e9 !important;
 }
 
+
+.btn-blue{
+    background: #485afb !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 4px 6px !important;
+    border-radius: 6px !important;
+    font-weight: bold !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease-in-out !important;
+}
 header {
     width: 100%;
     height: 60px;
@@ -51,6 +63,10 @@ header button.rounded-circle {
 
 header button.rounded-circle:hover {
     background: #c1d3f3 !important;
+}
+
+header .part2{
+    padding-left: 110px !important;
 }
 
 .searchBox {

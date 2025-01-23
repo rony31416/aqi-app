@@ -393,6 +393,7 @@ const DashBoard = () => {
           `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=metric`
         );
         const weatherData = await weatherResponse.json();
+        console.log(weatherData);
 
         setCurrentLocationData({
           aqi: aqiData.data.aqi || "N/A",
