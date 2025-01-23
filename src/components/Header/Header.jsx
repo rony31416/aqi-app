@@ -24,7 +24,7 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
-  const [isLogin, setIsLogin] = useState(false);
+  
 
 
   const context = useContext(Mycontext);
@@ -90,7 +90,9 @@ const Header = () => {
             </Tooltip>
 
             {
-              isLogin!==true? <Button className='btn-blue'>Sign In</Button> :
+              context.isLogin!==true?
+              <Link to={'/login'}>
+              <Button className='btn-blue'>Sign In</Button></Link> :
                 <div className="myAccWrapper">
                   <Tooltip title="Account settings">
                     <Button className="myAcc d-flex align-items-center" onClick={handleMenuOpen}>

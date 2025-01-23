@@ -15,12 +15,18 @@ body {
     background: #485afb !important;
     color: #fff !important;
     border: none !important;
-    padding: 4px 6px !important;
-    border-radius: 6px !important;
+    padding: 4px 10px !important;
+    border-radius: 30px !important;
     font-weight: bold !important;
     font-size: 14px !important;
     cursor: pointer !important;
     transition: all 0.3s ease-in-out !important;
+}
+
+.full{
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+    width: 100%;
 }
 header {
     width: 100%;
@@ -257,7 +263,6 @@ header .part2{
     list-style: none;
 
 }
-
 .main .sidebarWrapper .sidebar ul .submenu li a{
     color: rgba(0, 0, 0, 0.7) !important;
     text-decoration: none;
@@ -308,7 +313,6 @@ header .part2{
     
  }
 
-
  .dashboardWrapper{
     gap: 15px;
     width: 100%;
@@ -327,9 +331,6 @@ header .part2{
     color: #1a1a1a;
     text-transform: capitalize;
 }
-
-
-
 
  .dashboardWrapper .dashboardBox{
      width : 100%;
@@ -438,3 +439,23 @@ header .part2{
     background: #b5ceef !important;
     
   }
+
+
+  .loginSection{
+    width:100%;
+    height:100vh;
+    padding: 10px 10px !important;
+    background: url(../src/assets/images/pattern.webp);
+  }
+
+  .loginSection .loginBox .logo img{
+    height: 100px;
+    width:100px;
+    background: transparent !important;
+    mix-blend-mode:darken !important ;
+  }
+/* 
+login section  */
+
+
+  
