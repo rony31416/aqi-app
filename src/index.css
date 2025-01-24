@@ -22,7 +22,20 @@ body {
     cursor: pointer !important;
     transition: all 0.3s ease-in-out !important;
 }
+.btn-lg{
+    margin-top: 18px !important;
+    padding: 8px 25px !important;
+    font-size: 15px;
+}
 
+
+.link{
+    color : #5e5d72;
+   font-weight: 600;
+}
+.link:hover{
+    text-decoration: none;
+}
 .full{
     max-width: 100% !important;
     flex: 0 0 100% !important;
@@ -458,4 +471,106 @@ header .part2{
 login section  */
 
 
-  
+.loginSection .loginBox{
+    width: 380px;
+    height:auto;
+    margin:auto !important;
+}
+
+.loginSection .loginBox .wrapper{
+    width: 100%;
+    height:auto;
+    background: #dedae5;
+    margin-top: 32px !important;
+    position: relative;
+    z-index: 99;
+    border-radius: 12px;
+    padding:48px 40px!important;
+}
+
+.loginSection .loginBox .wrapper .from-group{
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 20px !important;
+}
+
+
+.loginSection .loginBox .wrapper .from-control{
+ width: 300px !important;
+ height: 40px !important;
+ box-shadow: none;
+ outline: none !important;
+ border-radius: 5px !important;
+ font-size: 14px;
+ font-weight: 500;
+ padding-left: 40px !important;
+ border: 2px solid #000;
+}
+
+.loginSection .loginBox .wrapper .from-group.focus .icon svg{
+        color: #0858f7 !important;
+}
+.loginSection .loginBox .wrapper .from-control:focus{
+    border: 2px solid #0858f7 !important;
+}
+
+
+.loginSection .loginBox .wrapper .from-group .icon{
+    position: absolute;
+    top:4px;
+    left: 15px;
+    z-index: 100;
+    font-size: 20px;
+}
+
+.loginSection .loginBox .wrapper .from-group .icon svg{
+   color: #5e5d72;
+}
+
+
+.toggleShowPassword{
+    position: absolute;
+    top: 6px;
+    right: 15px;
+    cursor: pointer;
+}
+.toggleShowPassword svg{
+    font-size: 20px;
+    color: #5e5d72;
+}
+.loginSection .loginBox .wrapper .link{
+    font-size: 12px;
+}
+
+.loginSection .loginBox .wrapper .or span.line{
+    display: block;
+    
+    width: 35%;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.loginSection .loginBox .wrapper .or span.middleText{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+}
+
+
+.logInWithGoogle{
+ 
+    text-transform: capitalize !important;
+    font-weight: bold !important;
+    gap: 10px !important;
+}
+
+.loginSection .loginBox .wrapper .googleSignIn svg{
+   font-size: 20px !important;
+   font-weight: 600;
+}
