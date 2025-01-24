@@ -17,7 +17,22 @@ const App = () => {
   const [isToggleSidebar, setIsToggleSidebar] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const [isHideSidebarAndHeader, setisHideSidebarAndHeader] = useState(false);
+  const [themeMode,setThemeMode] = useState(true);
 
+  useEffect(()=>{
+   
+   if(themeMode===true){
+    document.body.classList.remove('dark');
+    document.body.classList.add('light');
+    localStorage.setItem('themeMode','light');
+   }
+   else{
+    document.body.classList.remove('light');
+    document.body.classList.add('dark');
+    localStorage.setItem('themeMode','dark');
+   }
+   
+  },[themeMode]);
   
   const values = {
     isToggleSidebar,
@@ -26,6 +41,8 @@ const App = () => {
     setIsLogin,
     isHideSidebarAndHeader,
     setisHideSidebarAndHeader,
+    themeMode,
+    setThemeMode
   }
 
   // useEffect(() => { 

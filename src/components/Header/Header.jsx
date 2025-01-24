@@ -66,7 +66,7 @@ const Header = () => {
           <div className="col-sm-7 d-flex align-items-center justify-content-end part3">
 
             <Tooltip title="Theme Change">
-              <Button className="rounded-circle mr-3">
+              <Button className="rounded-circle mr-3" onClick={()=>context.setThemeMode(!context.themeMode)}>
                 <MdLightMode />
               </Button>
             </Tooltip>
