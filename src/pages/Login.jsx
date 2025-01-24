@@ -39,7 +39,7 @@ const Login = () => {
             <div className={`from-group position-relative ${inputIndex === 0 && 'focus'}`}>
               <span className='icon'><MdEmail /></span>
               <input type="text" className='from-control' placeholder='Enter your email'
-                onFocus={() => focusInput(0)} onBlur={() => setinputIndex(null)} />
+                onFocus={() => focusInput(0)} onBlur={() => setinputIndex(null)} autoFocus/>
             </div>
 
             <div className={`from-group position-relative ${inputIndex === 1 && 'focus'}`}>
@@ -88,13 +88,13 @@ const Login = () => {
         </div>
 
         <div className="wrapper2">
-           
-           <span className='text-center second'>
+
+          <span className='text-center second'>
             Don't have an account?
             <Link to={'/signUp'} className='link color'>Register</Link>
-          
-           </span>
-          </div>
+
+          </span>
+        </div>
       </div>
 
     </section>

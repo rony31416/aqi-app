@@ -7,6 +7,7 @@ import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar.jsx';
 import { use, useEffect } from 'react';
 import Login from './pages/Login.jsx';
+import SignUp from './pages/SignUp.jsx';
 
 const Mycontext = createContext();
 
@@ -16,6 +17,8 @@ const App = () => {
   const [isToggleSidebar, setIsToggleSidebar] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const [isHideSidebarAndHeader, setisHideSidebarAndHeader] = useState(false);
+
+  
   const values = {
     isToggleSidebar,
     setIsToggleSidebar,
@@ -52,6 +55,7 @@ const App = () => {
               <Route path="/" exact={true} element={<DashBoard />} />
               <Route path="/dashboard" exact={true} element={<DashBoard />} />
               <Route path="/login" exact={true} element={<Login />} />
+              <Route path="/signUp" exact={true} element={<SignUp />} />
             </Routes>
           </div>
         </div>

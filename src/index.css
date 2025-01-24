@@ -10,6 +10,10 @@ body {
     background-color: #ebe9e9 !important;
 }
 
+.text-sky{
+    color: #0858f7;
+}
+
 
 .btn-blue{
     background: #485afb !important;
@@ -22,11 +26,29 @@ body {
     cursor: pointer !important;
     transition: all 0.3s ease-in-out !important;
 }
+
+.btn-blue2{
+    background: #485afb !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 4px 10px !important;
+    border-radius: 6px !important;
+    font-weight: bold !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease-in-out !important;
+}
 .btn-lg{
     margin-top: 18px !important;
     padding: 8px 25px !important;
     font-size: 15px;
 }
+
+.btn-lg svg{
+    font-size: 18px !important;
+    margin-right: 8px !important;
+    margin-bottom: 4px !important;
+} 
 
 
 .link{
@@ -595,4 +617,42 @@ login section  */
 
 .googleSignIn{
     margin-bottom: 0px !important;
+}
+
+
+.signUpSection{
+    height: 92vh !important;
+    width: 96%;
+    padding: 0px 0px !important;
+    background: url(../src/assets/images/pattern.webp);
+    margin: 4vh 2% !important;
+   
+  }
+
+  .signUpSection .row {
+    box-shadow: 1px 1px 1px #bcb8c5;
+  }
+
+  .signUpSection .signupBox{
+    background-color: #dedae5;
+    height: 92vh!important;
+    padding-right: 0px !important;  
+    padding-top: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+  }
+.signUpSection .part1{
+    padding-left:100px !important;
+}
+
+.signUpSection .part1 h1{
+  font-size: 40px;
+  font-weight: 800 !important;
+  padding: 20px 0px !important;
+}
+
+.signUpSection .part1 p{
+  font-size: 18px !important;
+  color: #525050;
+  font-weight: 500;
 }
