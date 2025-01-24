@@ -61,13 +61,13 @@ const Login = () => {
               <Button className="btn-blue btn-lg w-100">Sign In</Button>
             </div>
 
-            <div className="from-group text-center ">
+            <div className="from-group text-center mb-0">
               <Link to={'/forgot-password'} className="link">
                 FORGET PASSWORD
               </Link>
 
               <div className='d-flex align-items-center 
-                  justify-content-center or mt-3 mb-3'>
+                  justify-content-center or mt-3 mb-0'>
                 <span className='line'></span>
                 <span className='middleText'>or</span>
                 <span className='line'></span>
@@ -86,6 +86,15 @@ const Login = () => {
           </form>
 
         </div>
+
+        <div className="wrapper2">
+           
+           <span className='text-center second'>
+            Don't have an account?
+            <Link to={'/signUp'} className='link color'>Register</Link>
+          
+           </span>
+          </div>
       </div>
 
     </section>
