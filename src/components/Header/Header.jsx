@@ -17,17 +17,14 @@ import '../../index.css';
 import { CgProfile } from "react-icons/cg";
 import { FaShieldAlt } from "react-icons/fa";
 import { Mycontext } from '../../App';
-
+import AIChatbotModal from './AIChatbotModal';
 
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-
-  
-
-
   const context = useContext(Mycontext);
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -61,7 +58,6 @@ const Header = () => {
             <SearchBox />
           </div>
 
-
           {/* Right-Side Buttons */}
           <div className="col-sm-7 d-flex align-items-center justify-content-end part3">
 
@@ -78,10 +74,15 @@ const Header = () => {
             </Tooltip>
 
             <Tooltip title="AI ChatBot">
-              <Button className="rounded-circle mr-3">
+              <Button className="rounded-circle mr-3" 
+              onClick={()=>setIsChatbotOpen(true)}>
                 <RiChatVoiceAiFill />
               </Button>
             </Tooltip>
+            <AIChatbotModal 
+            open={isChatbotOpen}
+            onClose={()=>setIsChatbotOpen(false)}
+            />
 
             <Tooltip title="Notifications">
               <Button className="rounded-circle mr-3">
@@ -155,11 +156,6 @@ const Header = () => {
                   </Menu>
                 </div>
             }
-
-
-
-            {/* Account Menu */}
-
           </div>
         </div>
       </div>

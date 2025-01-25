@@ -665,3 +665,90 @@ login section  */
   color: #525050;
   font-weight: 500;
 }
+
+/* Input Field Container */
+.input-container1 {
+    display: flex;
+    align-items: center;
+    gap: 10px !important;
+    padding: 10px 15px !important; /* Add padding around the input field */
+    width: 100% !important;
+    height: auto;
+  }
+
+  #text-field{
+    padding: 10px 10px !important;
+    color: #6c5858;
+  
+  }
+  
+  /* Enhanced Send Button */
+  .send-button {
+    color: #ffffff !important;
+    background: linear-gradient(45deg, #3062d8, #2b66c0) !important;
+    border-radius: 50% !important;
+    width: 45px !important;
+    height: 45px !important;
+    min-width: 45px !important;
+    padding: 10px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .send-button:hover {
+    background: linear-gradient(45deg, #483de0, #162c97) !important;
+    transform: scale(1.01);
+  }
+  
+  .send-button:disabled {
+    background-color: #bdbdbd;
+    color: #f5f5f5 !important;
+  }
+  
+  /* Adjust the chatbot's message padding and layout */
+  .chatbot-title {
+    display: flex;
+    align-items: center;
+    gap: 10px !important;
+    font-size: 1.6rem !important;
+    font-weight: 800 !important;
+    color: #2a47eb;
+    padding: 10px 25px !important;
+  }
+  
+  .chat-messages {
+    height: 400px !important;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px !important;
+    background-color: #f9f9f9;
+    border-radius: 8px !important;
+  }
+  
+  .chat-message {
+    margin: 10px !important;
+    padding: 10px !important;
+    border-radius: 15px !important;
+    max-width: 70% !important;
+    font-size: 0.9rem !important;
+    line-height: 1.5;
+    word-wrap: break-word;
+  }
+  
+  .user-message {
+    align-self: flex-end;
+    background-color: #c2defc;
+    color: #062f6e;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .ai-message {
+    align-self: flex-start;
+    background-color: #f0d7d7;
+    color: #333;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
