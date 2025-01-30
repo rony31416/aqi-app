@@ -507,54 +507,107 @@ const AIChatbotModal = ({ open, onClose }) => {
   const chatContainerRef = useRef(null);
 
   // Fetch location data
-  const fetchLocationData = async () => {
-    if (isFetching) return;
-    setIsFetching(true);
+  // const fetchLocationData = async () => {
+  //   if (isFetching) return;
+  //   setIsFetching(true);
 
-    navigator.geolocation.getCurrentPosition(async (position) => {
-      const { latitude, longitude } = position.coords;
-      const aqicnToken = import.meta.env.VITE_AQICN_API_TOKEN;
-      const weatherApiKey = import.meta.env.VITE_WEATHER_API_KEY;
+  //   navigator.geolocation.getCurrentPosition(async (position) => {
+  //     const { latitude, longitude } = position.coords;
+  //     const aqicnToken = import.meta.env.VITE_AQICN_API_TOKEN;
+  //     const weatherApiKey = import.meta.env.VITE_WEATHER_API_KEY;
 
-      try {
-        const aqiResponse = await fetch(
-          `https://api.waqi.info/feed/geo:${latitude};${longitude}/?token=${aqicnToken}`
-        );
-        const aqiData = await aqiResponse.json();
+  //     try {
+  //       const aqiResponse = await fetch(
+  //         `https://api.waqi.info/feed/geo:${latitude};${longitude}/?token=${aqicnToken}`
+  //       );
+  //       const aqiData = await aqiResponse.json();
 
-        const weatherResponse = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=metric`
-        );
-        const weatherData = await weatherResponse.json();
+  //       const weatherResponse = await fetch(
+  //         `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=metric`
+  //       );
+  //       const weatherData = await weatherResponse.json();
 
-        const locationData = {
-          aqi: aqiData.data.aqi || 'N/A',
-          temperature: weatherData.main.temp || 'N/A',
-          humidity: weatherData.main.humidity || 'N/A',
-          location: weatherData.name || 'N/A',
-        };
+  //       const locationData = {
+  //         aqi: aqiData.data.aqi || 'N/A',
+  //         temperature: weatherData.main.temp || 'N/A',
+  //         humidity: weatherData.main.humidity || 'N/A',
+  //         location: weatherData.name || 'N/A',
+  //       };
 
-        setCurrentLocationData(locationData);
+  //       setCurrentLocationData(locationData);
 
-        if (!isInitialMessageSent) {
-          const initialMessage = `আমার বর্তমান অবস্থান ${locationData.location}। এখানে তাপমাত্রা ${locationData.temperature}°C, AQI ${locationData.aqi}, এবং আর্দ্রতা ${locationData.humidity}%। এখন আমার কোন ধরনের সেফটি গ্রহণ করা উচিত?`;
+  //       if (!isInitialMessageSent) {
+  //         const initialMessage = `আমার বর্তমান অবস্থান ${locationData.location}। এখানে তাপমাত্রা ${locationData.temperature}°C, AQI ${locationData.aqi}, এবং আর্দ্রতা ${locationData.humidity}%। এখন আমার কোন ধরনের সেফটি গ্রহণ করা উচিত?`;
 
-          setMessages((prevMessages) => [
-            ...prevMessages,
-            { text: initialMessage, sender: 'user' },
-            { text: 'Thinking...', sender: 'ai', isThinking: true },
-          ]);
+  //         setMessages((prevMessages) => [
+  //           ...prevMessages,
+  //           { text: initialMessage, sender: 'user' },
+  //           { text: 'Thinking...', sender: 'ai', isThinking: true },
+  //         ]);
 
-          await generateAIResponse(initialMessage);
-          setIsInitialMessageSent(true);
-        }
-      } catch (error) {
-        console.error('Error fetching location data:', error);
-      } finally {
-        setIsFetching(false);
+  //         await generateAIResponse(initialMessage);
+  //         setIsInitialMessageSent(true);
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching location data:', error);
+  //     } finally {
+  //       setIsFetching(false);
+  //     }
+  //   });
+  // };
+
+  const fetchLock = useRef(false); // Track API call state
+
+const fetchLocationData = async () => {
+  if (isFetching || fetchLock.current) return; // Prevent duplicate calls
+  fetchLock.current = true;
+  setIsFetching(true);
+
+  navigator.geolocation.getCurrentPosition(async (position) => {
+    const { latitude, longitude } = position.coords;
+    const aqicnToken = import.meta.env.VITE_AQICN_API_TOKEN;
+    const weatherApiKey = import.meta.env.VITE_WEATHER_API_KEY;
+
+    try {
+      const aqiResponse = await fetch(
+        `https://api.waqi.info/feed/geo:${latitude};${longitude}/?token=${aqicnToken}`
+      );
+      const aqiData = await aqiResponse.json();
+
+      const weatherResponse = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=metric`
+      );
+      const weatherData = await weatherResponse.json();
+
+      const locationData = {
+        aqi: aqiData.data.aqi || 'N/A',
+        temperature: weatherData.main.temp || 'N/A',
+        humidity: weatherData.main.humidity || 'N/A',
+        location: weatherData.name || 'N/A',
+      };
+
+      setCurrentLocationData(locationData);
+
+      if (!isInitialMessageSent) {
+        const initialMessage = `আমার বর্তমান অবস্থান ${locationData.location}। এখানে তাপমাত্রা ${locationData.temperature}°C, AQI ${locationData.aqi}, এবং আর্দ্রতা ${locationData.humidity}%। এখন আমার কোন ধরনের সেফটি গ্রহণ করা উচিত?`;
+
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { text: initialMessage, sender: 'user' },
+          { text: 'Thinking...', sender: 'ai', isThinking: true },
+        ]);
+
+        await generateAIResponse(initialMessage);
+        setIsInitialMessageSent(true);
       }
-    });
-  };
+    } catch (error) {
+      console.error('Error fetching location data:', error);
+    } finally {
+      fetchLock.current = false; // Release the lock
+      setIsFetching(false);
+    }
+  });
+};
 
   // Generate AI response using Gemini
   const generateAIResponse = async (message) => {

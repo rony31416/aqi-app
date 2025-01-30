@@ -8,6 +8,7 @@ import Sidebar from './components/Sidebar.jsx';
 import { use, useEffect } from 'react';
 import Login from './pages/Login.jsx';
 import SignUp from './pages/SignUp.jsx';
+import NewsComponent from './pages/News.jsx';
 
 const Mycontext = createContext();
 
@@ -73,6 +74,7 @@ const App = () => {
               <Route path="/dashboard" exact={true} element={<DashBoard />} />
               <Route path="/login" exact={true} element={<Login />} />
               <Route path="/signUp" exact={true} element={<SignUp />} />
+              <Route path="/news" exact={true} element={<NewsComponent />} />
             </Routes>
           </div>
         </div>

@@ -158,7 +158,7 @@ const Sidebar = () => {
 
 
                 <li>
-                    <Link to="/">
+                    <Link to="/news">
                     <Button className={`w-100 ${activeTab===9 ? 'active' : ''}`} onClick={()=>isOpenSubMenu(9)} >
                             <span className='icon'>
                                 <ImNewspaper />
