@@ -757,7 +757,7 @@ login section  */
 
 .news-container {
     text-align: center;
-    margin: 100px 30px 10px 30px !important ;
+    margin: 100px 10px 10px 10px !important ;
    overflow: hidden;
  
     height:auto;
@@ -795,7 +795,7 @@ login section  */
     border: 1px solid #ddd !important;
     border-radius: 8px ;
     overflow: hidden;
-    width: 500px !important;
+    width: 600px !important;
     height: 320PX !important;
     text-align:center;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
