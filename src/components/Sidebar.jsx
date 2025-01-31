@@ -70,7 +70,7 @@ const Sidebar = () => {
                 </li>
 
                 <li>
-                    <Link to="/">
+                    <Link to="/air-quality-index">
                     <Button className={`w-100 ${activeTab===2 ? 'active' : ''}`} onClick={()=>isOpenSubMenu(2)}>
                             <span className='icon'>
                                 <LeaderboardIcon />

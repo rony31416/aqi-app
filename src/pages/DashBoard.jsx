@@ -7,6 +7,7 @@ const DashBoard = () => {
   const context = useContext(Mycontext);
   const { fetchLocationData, currentLocationData, isFetching } = context;
 
+
   useEffect(() => {
     context.setisHideSidebarAndHeader(false);
     window.scrollTo(0, 0);

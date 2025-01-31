@@ -8,7 +8,7 @@ import Sidebar from './components/Sidebar.jsx';
 import Login from './pages/Login.jsx';
 import SignUp from './pages/SignUp.jsx';
 import News from './pages/News.jsx';
-
+import AirQualityIndex from './pages/AirQualityIndex.jsx'
 const Mycontext = createContext();
 
 const App = () => {
@@ -17,6 +17,7 @@ const App = () => {
   const [isHideSidebarAndHeader, setisHideSidebarAndHeader] = useState(false);
   const [themeMode, setThemeMode] = useState(true);
   const [currentLocationData, setCurrentLocationData] = useState({
+    aqiDataJson: null,
     aqi: null,
     temperature: null,
     humidity: null,
@@ -56,6 +57,7 @@ const App = () => {
         const weatherData = await weatherResponse.json();
 
         setCurrentLocationData({
+          aqiDataJson: aqiData || "N/A",
           aqi: aqiData.data.aqi || "N/A",
           temperature: weatherData.main.temp || "N/A",
           humidity: weatherData.main.humidity || "N/A",
@@ -108,6 +110,8 @@ const App = () => {
               <Route path="/login" exact element={<Login />} />
               <Route path="/signUp" exact element={<SignUp />} />
               <Route path="/news" exact element={<News />} />
+              <Route path="/air-quality-index" exact element={<AirQualityIndex />} />
+              
             </Routes>
           </div>
         </div>
