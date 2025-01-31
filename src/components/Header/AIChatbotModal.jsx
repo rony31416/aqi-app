@@ -133,6 +133,12 @@ const AIChatbotModal = ({ open, onClose }) => {
   };
 
   useEffect(() => {
+    if (open) {
+      setIsInitialMessageSent(false); // Reset when modal opens
+    }
+  }, [open]);
+
+  useEffect(() => {
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
     return () => {
@@ -143,7 +149,7 @@ const AIChatbotModal = ({ open, onClose }) => {
 
   // Initial message setup
   useEffect(() => {
-    if (!isInitialMessageSent && currentLocationData.location) {
+    if (!isInitialMessageSent && open && currentLocationData?.location) {
       const initialMessage = `আমার বর্তমান অবস্থান ${currentLocationData.location}। এখানে তাপমাত্রা ${currentLocationData.temperature}°C, AQI ${currentLocationData.aqi}, এবং আর্দ্রতা ${currentLocationData.humidity}%। এখন আমার কোন ধরনের সেফটি গ্রহণ করা উচিত?`;
 
       setMessages((prevMessages) => [
@@ -155,7 +161,7 @@ const AIChatbotModal = ({ open, onClose }) => {
       generateAIResponse(initialMessage);
       setIsInitialMessageSent(true);
     }
-  }, [currentLocationData, isInitialMessageSent]);
+  }, [open,currentLocationData, isInitialMessageSent]);
 
   // Generate AI response
   const generateAIResponse = async (message) => {
