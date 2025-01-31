@@ -1,71 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { Air, Thermostat, WaterDrop, LocationOn } from "@mui/icons-material";
-import "../index.css"; // Import custom styles
+import "../index.css";
 import { Mycontext } from "../App";
 
 const DashBoard = () => {
-
   const context = useContext(Mycontext);
-
-  useEffect(()=>{
-    context.setisHideSidebarAndHeader(false);
-
-    window.scrollTo(0,0);
-  },[]);
-
-
-  const [currentLocationData, setCurrentLocationData] = useState({
-    aqi: null,
-    temperature: null,
-    humidity: null,
-    location: null,
-  });
-
-  const [isFetching, setIsFetching] = useState(false);
-
-  const fetchLocationData = async () => {
-    setIsFetching(true);
-
-    navigator.geolocation.getCurrentPosition(async (position) => {
-      const { latitude, longitude } = position.coords;
-      const aqicnToken = import.meta.env.VITE_AQICN_API_TOKEN;
-      const weatherApiKey = import.meta.env.VITE_WEATHER_API_KEY;
-
-      try {
-        // Fetch AQI data
-        const aqiResponse = await fetch(
-          `https://api.waqi.info/feed/geo:${latitude};${longitude}/?token=${aqicnToken}`
-        );
-        const aqiData = await aqiResponse.json();
-
-        // Fetch Weather data
-        const weatherResponse = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=metric`
-        );
-        const weatherData = await weatherResponse.json();
-        console.log(weatherData);
-
-        setCurrentLocationData({
-          aqi: aqiData.data.aqi || "N/A",
-          temperature: weatherData.main.temp || "N/A",
-          humidity: weatherData.main.humidity || "N/A",
-          location: weatherData.name || "N/A",
-        });
-      } catch (error) {
-        console.error("Error fetching location data:", error);
-      } finally {
-        setIsFetching(false);
-      }
-    });
-  };
+  const { fetchLocationData, currentLocationData, isFetching } = context;
 
   useEffect(() => {
-    // Fetch location data on component mount and every 1 hour thereafter
-    fetchLocationData(); // Initial fetch
-    const intervalId = setInterval(fetchLocationData, 60 * 60 * 1000); // 1 hour interval
+    context.setisHideSidebarAndHeader(false);
+    window.scrollTo(0, 0);
+  }, []);
 
-    // Cleanup interval on component unmount
-    return () => clearInterval(intervalId);
+  useEffect(() => {
+    fetchLocationData();
   }, []);
 
   useEffect(() => {
@@ -111,7 +59,6 @@ const DashBoard = () => {
       document.body.removeChild(script);
     };
   }, []);
-
   return (
     <div className="right-content">
       <div className="dashboardWrapper">
@@ -120,58 +67,32 @@ const DashBoard = () => {
         </div>
 
         <div className="dashboardBox">
-          {/* Google Map */}
           <div id="map" className="map-aqi"></div>
         </div>
       </div>
 
-      {/* Fixed Info Box */}
       <div className="info-box">
         <div className="card">
           <div className="card-content">
             <h6>Current Location Information</h6>
 
             {isFetching ? (
-              <div className="loading">
-                <div className="spinner"></div>
-              </div>
+              <div className="loading"><div className="spinner"></div></div>
             ) : (
               <div className="grid-container">
-                {/* Location */}
-                <div className="grid-item location">
-                  <LocationOn className="icon" />
-                  <span>Location:</span>
-                </div>
+                <div className="grid-item location"><LocationOn className="icon" /><span>Location:</span></div>
                 <div className="grid-item">{currentLocationData.location}</div>
-
-                {/* AQI */}
-                <div className="grid-item aqi">
-                  <Air className="icon" />
-                  <span>AQI:</span>
-                </div>
+                <div className="grid-item aqi"><Air className="icon" /><span>AQI:</span></div>
                 <div className="grid-item">{currentLocationData.aqi}</div>
-
-                {/* Temperature */}
-                <div className="grid-item temperature">
-                  <Thermostat className="icon" />
-                  <span>Temperature:</span>
-                </div>
+                <div className="grid-item temperature"><Thermostat className="icon" /><span>Temperature:</span></div>
                 <div className="grid-item">{currentLocationData.temperature}°C</div>
-
-                {/* Humidity */}
-                <div className="grid-item humidity">
-                  <WaterDrop className="icon" />
-                  <span>Humidity:</span>
-                </div>
+                <div className="grid-item humidity"><WaterDrop className="icon" /><span>Humidity:</span></div>
                 <div className="grid-item">{currentLocationData.humidity}%</div>
               </div>
             )}
           </div>
-
           <div className="card-actions">
-            <button className="refresh-btn" onClick={fetchLocationData}>
-              Refresh
-            </button>
+            <button className="refresh-btn" onClick={fetchLocationData}>Refresh</button>
           </div>
         </div>
       </div>
