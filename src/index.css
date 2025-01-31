@@ -959,12 +959,12 @@ login section  */
   position: relative;
   width: 80% !important;
   /* border: 1px solid red !important; */
-  
+
 }
 
 
-.aqiTitle { 
-  text-align: center; 
+.aqiTitle {
+  text-align: center;
   font-size: 24px;
   border: 1px solid black;
   padding: 8px 10px !important;
@@ -975,67 +975,199 @@ login section  */
   height: auto;
 }
 
-.airQualityIndexWrapper .aqiBox { 
-  text-align: center; 
+.airQualityIndexWrapper .aqiBox {
+  text-align: center;
   font-size: 24px;
   border: 1px solid black;
   margin: 2px auto !important;
   border-radius: 10px;
   font-weight: 700;
   height: auto;
-  
+
 }
-.airQualityIndexWrapper  #comparisonText{
+
+.airQualityIndexWrapper #comparisonText {
   text-align: center;
   font-size: 20px !important;
   color: black;
 }
-.aqiVeryGood { 
-  background-color: #3CB371; 
-  color: white; 
+
+.aqiVeryGood {
+  background-color: #3CB371;
+  color: white;
 }
 
-.aqiGood { 
-  background-color: #FFD700; 
+.aqiGood {
+  background-color: #FFD700;
 }
 
-.aqiFair { 
-  background-color: #FFA500; 
+.aqiFair {
+  background-color: #FFA500;
 }
 
-.aqiPoor { 
-  background-color: #FF4500; 
-  color: white; 
+.aqiPoor {
+  background-color: #FF4500;
+  color: white;
 }
 
-.aqiVeryPoor { 
-  background-color: #8B0000; 
-  color: white; 
+.aqiVeryPoor {
+  background-color: #8B0000;
+  color: white;
 }
 
-.aqiHazardous { 
-  background-color: #4B0082; 
-  color: white; 
+.aqiHazardous {
+  background-color: #4B0082;
+  color: white;
 }
 
-.aqiTable { 
-  width: 100%; 
-  margin-top: 20px; 
-  border-collapse: separate ; 
+.aqiTable {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: separate;
   border-spacing: 10px;
 }
 
-.aqiTable th, .aqiTable td { 
-  padding: 10px !important; 
-  text-align: center; 
-  border: 1px solid #f5f2f2; 
+.aqiTable th,
+.aqiTable td {
+  padding: 10px !important;
+  text-align: center;
+  border: 1px solid #f5f2f2;
   box-shadow: 0.8px 0.8px 0px 0px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   font-size: 20px !important;
   font-weight: 600;
-  
+
 }
 
-.aqiTable th { 
-  background-color: #feeaea; 
+.aqiTable th {
+  background-color: #feeaea;
 }
+
+
+/* air qualuity forecasting style */
+.airForcastingWrapper {
+  align-items: center;
+  justify-content: center;
+  margin: 90px auto !important;
+  overflow: hidden;
+  width: 90% !important;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 8px 32px rgba(0, 115, 230, 0.15);
+  backdrop-filter: blur(10px);
+  animation: fadeInUp 0.8s ease-out;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.airForcastingWrapper .aqiforecast-title {
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, #0073e6 0%, #18191a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  align-items: center;
+  justify-content: center;
+  margin: 5px auto !important;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  padding-bottom: 15px;
+  text-align: center;
+
+}
+
+.aqiforecast-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(135deg, #0073e6 0%, #00a8ff 100%);
+  border-radius: 2px;
+}
+
+.aqiforecast-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 40px 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+ 
+}
+
+.aqiforecast-table:hover {
+  transform: translateY(-5px);
+}
+
+.aqiforecast-table th,
+.aqiforecast-table td {
+  padding: 16px 10px !important;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.aqiforecast-table th {
+  background: linear-gradient(135deg, #0073e6 0%, #5dabd2 100%);
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: sticky;
+  top: 0;
+}
+
+.aqiforecast-table tr {
+  background: rgba(205, 200, 200, 0.4);
+}
+
+.aqiforecast-table tr:nth-child(even) {
+  background: rgba(250, 246, 246, 0.6);
+}
+
+.aqiforecast-table tr:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.02);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.aqiforecast-table td {
+  border-bottom: 1px solid rgba(124, 13, 13, 0.05);
+}
+
+.aqiforecast-subtitle {
+  font-size: 2rem;
+  color: #110606;
+  margin-bottom: 20px !important;
+  font-weight: 700;
+  position: relative;
+  padding: 10px 0 !important;
+  text-align: center;
+}
+
+.aqiforecast-subtitle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 3px;
+  background: linear-gradient(135deg, #0073e6 0%, #00a8ff 100%);
+  border-radius: 2px;
+}
+

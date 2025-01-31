@@ -1,19 +1,3 @@
-// import React from 'react'
-// import "../index.css"
-
-// const AirQualityIndex = () => {
-//   return (
-//     <div>
-//         <div className='airQualityIndexWrapper'>
-//             <p>
-//             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem, molestias! Ullam totam maiores neque minus voluptas optio tempora inventore distinctio? Nam quos optio inventore porro dolore, est quasi iste. Veritatis distinctio molestiae voluptatibus ea, totam cupiditate esse, ratione corrupti, accusantium necessitatibus harum mollitia! Velit laborum quos corporis beatae officia, molestiae laboriosam alias veritatis ullam esse blanditiis perspiciatis sint dolor minus accusamus. Unde deleniti nisi ipsam eos sapiente voluptatem magni, adipisci ex incidunt dicta a quisquam molestiae vero reprehenderit consequuntur error id excepturi perferendis eveniet dolorum rem pariatur rerum. Architecto id, saepe laborum qui voluptatibus est labore ipsam ratione obcaecati tempore!
-//             </p>
-//         </div>
-//     </div>
-//   )
-// }
-
-// export default AirQualityIndex
 
 import React, { useState, useEffect } from 'react';
 import {useContext } from "react";

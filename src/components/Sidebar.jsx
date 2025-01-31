@@ -83,7 +83,7 @@ const Sidebar = () => {
                 </li>
 
                 <li>
-                    <Link to="/">
+                    <Link to="/forecast">
                     <Button className={`w-100 ${activeTab===3 ? 'active' : ''}`} onClick={()=>isOpenSubMenu(3)} >
                             <span className='icon'>
                                 <OnlinePredictionIcon />

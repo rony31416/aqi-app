@@ -9,6 +9,8 @@ import Login from './pages/Login.jsx';
 import SignUp from './pages/SignUp.jsx';
 import News from './pages/News.jsx';
 import AirQualityIndex from './pages/AirQualityIndex.jsx'
+import AqiForecast from './pages/AqiForecast.jsx';
+
 const Mycontext = createContext();
 
 const App = () => {
@@ -111,6 +113,7 @@ const App = () => {
               <Route path="/signUp" exact element={<SignUp />} />
               <Route path="/news" exact element={<News />} />
               <Route path="/air-quality-index" exact element={<AirQualityIndex />} />
+              <Route path="/forecast" exact element={<AqiForecast />} />
               
             </Routes>
           </div>
