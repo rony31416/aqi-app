@@ -709,50 +709,154 @@ login section  */
   }
   
   /* Adjust the chatbot's message padding and layout */
-  .chatbot-title {
-    display: flex;
-    align-items: center;
-    gap: 10px !important;
-    font-size: 1.6rem !important;
-    font-weight: 800 !important;
-    color: #2a47eb;
-    padding: 10px 25px !important;
-  }
-  
-  .chat-messages {
-    height: 400px !important;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    padding: 10px !important;
-    background-color: #f9f9f9;
-    border-radius: 8px !important;
-  }
-  
-  .chat-message {
-    margin: 10px !important;
-    padding: 10px !important;
-    border-radius: 15px !important;
-    max-width: 70% !important;
-    font-size: 0.9rem !important;
-    line-height: 1.5;
-    word-wrap: break-word;
-  }
-  
-  .user-message {
-    align-self: flex-end;
-    background-color: #c2defc;
-    color: #062f6e;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  }
-  
-  .ai-message {
-    align-self: flex-start;
-    background-color: #f0d7d7;
-    color: #333;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
+  /* Existing styles */
+/* Existing styles */
+.chatbot-title {
+  display: flex;
+  align-items: center;
+  gap: 10px !important;
+  font-size: 1.6rem !important;
+  font-weight: 800 !important;
+  color: #2a47eb;
+  padding: 10px 25px !important;
+  cursor: grab !important;
+  user-select: none;
+}
 
+.chat-messages {
+  height: 100% !important;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 10px !important;
+  background-color: #f9f9f9;
+  border-radius: 8px !important;
+}
+
+.chat-message {
+  margin: 10px !important;
+  padding: 10px !important;
+  border-radius: 15px !important;
+  max-width: 70% !important;
+  font-size: 0.9rem !important;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.user-message {
+  align-self: flex-end;
+  background-color: #c2defc;
+  color: #062f6e;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.ai-message {
+  align-self: flex-start;
+  background-color: #f0d7d7;
+  color: #333;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* New styles for draggable and resizable functionality */
+.draggable-resizable-dialog {
+  position: fixed !important;
+  pointer-events: auto !important;
+}
+
+.draggable-resizable-dialog .MuiDialog-paper {
+  margin: 0;
+  position: absolute;
+}
+
+.draggable-resizable-dialog .MuiBackdrop-root {
+  background-color: transparent;
+}
+
+/* Resize handles */
+.resize-handle {
+  position: absolute;
+  background-color: transparent;
+  z-index: 1000;
+}
+
+/* Edge handles */
+.resize-handle.n {
+  top: -5px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  cursor: n-resize;
+}
+
+.resize-handle.e {
+  top: 0;
+  right: -5px;
+  bottom: 0;
+  width: 10px;
+  cursor: e-resize;
+}
+
+.resize-handle.s {
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  cursor: s-resize;
+}
+
+.resize-handle.w {
+  top: 0;
+  left: -5px;
+  bottom: 0;
+  width: 10px;
+  cursor: w-resize;
+}
+
+/* Corner handles */
+.resize-handle.ne {
+  top: -5px;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  cursor: ne-resize;
+}
+
+.resize-handle.nw {
+  top: -5px;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  cursor: nw-resize;
+}
+
+.resize-handle.se {
+  bottom: -5px;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  cursor: se-resize;
+}
+
+.resize-handle.sw {
+  bottom: -5px;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  cursor: sw-resize;
+}
+
+.cursor-grab {
+  cursor: grab;
+}
+
+.cursor-grabbing {
+  cursor: grabbing;
+}
+
+/* Make handles visible on hover */
+.MuiDialog-paper:hover .resize-handle {
+  background-color: rgba(0, 0, 0, 0.1);
+}
 /* news section  */
 
 .news-container {
