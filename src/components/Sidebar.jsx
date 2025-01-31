@@ -94,7 +94,7 @@ const Sidebar = () => {
 
                 </li>
                 <li>
-                    <Link to="/">
+                    <Link to="/aqi-ranking">
                     <Button className={`w-100 ${activeTab===4 ? 'active' : ''}`}  onClick={()=>isOpenSubMenu(4)} >
                             <span className='icon'>
                                 <MdMultilineChart />

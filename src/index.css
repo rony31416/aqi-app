@@ -952,13 +952,16 @@ login section  */
 .airQualityIndexWrapper {
   align-items: center;
   justify-content: center;
-  text-align: center;
-  margin: 50px auto !important;
+  margin: 90px auto !important;
   overflow: hidden;
-  height: auto;
-  position: relative;
-  width: 80% !important;
-  /* border: 1px solid red !important; */
+  width: 90% !important;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 40px !important;
+  box-shadow: 0 8px 32px rgba(0, 115, 230, 0.15);
+  backdrop-filter: blur(10px);
+  animation: fadeInUp 0.8s ease-out;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 
 }
 
@@ -999,7 +1002,7 @@ login section  */
 }
 
 .aqiModerate {
-  background-color: #dbdb0a;
+  background-color: #fefe5b;
   /* Yellow */
 }
 
@@ -1176,4 +1179,100 @@ login section  */
   height: 3px;
   background: linear-gradient(135deg, #0073e6 0%, #00a8ff 100%);
   border-radius: 2px;
+}
+
+/* for the aqi rankig  */
+
+.aqi-ranking-container {
+  align-items: center;
+  justify-content: center;
+  margin: 90px auto !important;
+  overflow: hidden;
+  width: 90% !important;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 40px !important;
+  box-shadow: 0 8px 32px rgba(0, 115, 230, 0.15);
+  backdrop-filter: blur(10px);
+  animation: fadeInUp 0.8s ease-out;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  height :auto!important;
+
+}
+
+.aqi-ranking-container h1{
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, #0073e6 0%, #18191a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  align-items: center;
+  justify-content: center;
+  margin: 5px auto !important;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  padding-bottom: 15px;
+  text-align: center;
+  margin-top: 30px !important;
+
+}
+
+
+.aqi-ranking-button {
+  margin: 30px auto !important;  /* Increased vertical margin */
+  padding: 10px 20px !important;
+  cursor: pointer;/* Changed to block for better centering */
+  transition: all 0.3s ease; /* Smooth transition for interactions */
+  border-radius: 5px; /* Optional: adds rounded corners */
+  border: none; /* Optional: removes default border */
+  color: #093b6d;
+  /* Optional: Add a subtle shadow */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  background-color: #dfe2f9;
+  /* Centering adjustments */
+  position: relative;
+  left: 40%;
+  transform: translateX(-50%);
+  font-size: 20px !important;
+  font-weight: 500;
+  margin-bottom: 50px !important;
+}
+
+/* Hover effect */
+.aqi-ranking-button:hover {
+  background-color: #f0f0f0; /* Light gray background */
+  transform: translate(-50%, -2px); /* Slight lift */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Enhanced shadow */
+}
+
+.aqi-ranking-container #aqi-locations{
+  width: 90% !important;
+  margin: 10px auto !important;
+}
+.aqi-ranking-location {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  padding: 20px 20px !important;
+  margin: 10px !important; font-size: 20px !important;
+  color: #fbf5f5;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+.aqi-ranking-location .country-and-name .cnm{
+  padding-left: 20px !important;
+ 
+}
+
+.aqi-ranking-location img {
+  width: 30px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.aqi-ranking-aqi {
+  font-weight: bold;
 }
