@@ -992,33 +992,40 @@ login section  */
   color: black;
 }
 
-.aqiVeryGood {
-  background-color: #3CB371;
-  color: white;
-}
-
 .aqiGood {
-  background-color: #FFD700;
-}
-
-.aqiFair {
-  background-color: #FFA500;
-}
-
-.aqiPoor {
-  background-color: #FF4500;
+  background-color: #2eb62e;
+  /* Green */
   color: white;
 }
 
-.aqiVeryPoor {
-  background-color: #8B0000;
+.aqiModerate {
+  background-color: #dbdb0a;
+  /* Yellow */
+}
+
+.aqiUnhealthySensitive {
+  background-color: #FF7E00;
+  /* Orange */
+}
+
+.aqiUnhealthy {
+  background-color: #ea3c3c;
+  /* Red */
+  color: white;
+}
+
+.aqiVeryUnhealthy {
+  background-color: #942d9e;
+  /* Purple */
   color: white;
 }
 
 .aqiHazardous {
-  background-color: #4B0082;
+  background-color: #830629;
+  /* Maroon */
   color: white;
 }
+
 
 .aqiTable {
   width: 100%;
@@ -1108,7 +1115,7 @@ login section  */
   overflow: hidden;
   border-radius: 12px;
   transition: transform 0.3s ease;
- 
+
 }
 
 .aqiforecast-table:hover {
@@ -1170,4 +1177,3 @@ login section  */
   background: linear-gradient(135deg, #0073e6 0%, #00a8ff 100%);
   border-radius: 2px;
 }
-
