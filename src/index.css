@@ -813,19 +813,7 @@ login section  */
     object-fit: cover;
     border-radius: 10px;
   }
-  
-  .news-card .news-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px !important;
-    padding: 10px 20px !important;
-    margin: 10px auto !important;
-    cursor: pointer;
-    text-align: center !important;
 
-  }
-  
   .news-button:hover {
     background-color: #0056b3;
   }
