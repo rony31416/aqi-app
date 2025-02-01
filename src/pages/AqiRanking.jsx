@@ -188,7 +188,7 @@ const AqiRanking = () => {
         <h1>Air Quality Ranking</h1>
         <div className="aqi-ranking-buttons">
           <button className="aqi-ranking-button" onClick={showTopCleanest}>Top Cleanest Locations</button>
-          <button className="aqi-ranking-button" onClick={showTopWorst}>Top Worst Locations</button>
+          <button className="aqi-ranking-button" onClick={showTopWorst}>Most Worst Locations</button>
         </div>
         <div id="aqi-locations">
           {sortedLocations.map(location => (

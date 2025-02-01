@@ -11,6 +11,7 @@ import News from './pages/News.jsx';
 import AirQualityIndex from './pages/AirQualityIndex.jsx'
 import AqiForecast from './pages/AqiForecast.jsx';
 import AqiRanking from './pages/AqiRanking.jsx'
+import SafetyMeasurement from './pages/SafetyMeasurement.jsx';
 
 
 const Mycontext = createContext();
@@ -117,6 +118,7 @@ const App = () => {
               <Route path="/air-quality-index" exact element={<AirQualityIndex />} />
               <Route path="/forecast" exact element={<AqiForecast />} />
               <Route path="/aqi-ranking" exact element={<AqiRanking />} />
+              <Route path="/safety" exact element={<SafetyMeasurement />} />
               
             </Routes>
           </div>

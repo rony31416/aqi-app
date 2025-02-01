@@ -109,7 +109,7 @@ const Sidebar = () => {
 
 
                 <li>
-                    <Link to="/">
+                    <Link to="/safety">
                     <Button className={`w-100 ${activeTab===5 ? 'active' : ''}`} onClick={()=>isOpenSubMenu(5)} >
                             <span className='icon'>
                                 <FaHeadSideMask />
