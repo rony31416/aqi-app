@@ -19,7 +19,7 @@ const Mycontext = createContext();
 
 const App = () => {
   const [isToggleSidebar, setIsToggleSidebar] = useState(false);
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [isHideSidebarAndHeader, setisHideSidebarAndHeader] = useState(false);
   const [themeMode, setThemeMode] = useState(true);
   const [currentLocationData, setCurrentLocationData] = useState({
@@ -30,6 +30,7 @@ const App = () => {
     location: null,
   });
   const [isFetching, setIsFetching] = useState(false);
+  const [name, setName] = useState('');
 
   useEffect(() => {
     if (themeMode === true) {
@@ -43,39 +44,6 @@ const App = () => {
     }
   }, [themeMode]);
 
-  // Fetch location data and store it in context
-  // const fetchLocationData = async () => {
-  //   setIsFetching(true);
-  //   navigator.geolocation.getCurrentPosition(async (position) => {
-  //     const { latitude, longitude } = position.coords;
-  //     const aqicnToken = import.meta.env.VITE_AQICN_API_TOKEN;
-  //     const weatherApiKey = import.meta.env.VITE_WEATHER_API_KEY;
-
-  //     try {
-  //       const aqiResponse = await fetch(
-  //         `https://api.waqi.info/feed/geo:${latitude};${longitude}/?token=${aqicnToken}`
-  //       );
-  //       const aqiData = await aqiResponse.json();
-
-  //       const weatherResponse = await fetch(
-  //         `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=metric`
-  //       );
-  //       const weatherData = await weatherResponse.json();
-
-  //       setCurrentLocationData({
-  //         aqiDataJson: aqiData || "N/A",
-  //         aqi: aqiData.data.aqi || "N/A",
-  //         temperature: weatherData.main.temp || "N/A",
-  //         humidity: weatherData.main.humidity || "N/A",
-  //         location: weatherData.name || "N/A",
-  //       });
-  //     } catch (error) {
-  //       console.error("Error fetching location data:", error);
-  //     } finally {
-  //       setIsFetching(false);
-  //     }
-  //   });
-  // };
   const fetchLocationData = async (searchLocation = null) => {
     setIsFetching(true);
     const aqicnToken = import.meta.env.VITE_AQICN_API_TOKEN;
@@ -144,19 +112,6 @@ const App = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  // const values = {
-  //   isToggleSidebar,
-  //   setIsToggleSidebar,
-  //   isLogin,
-  //   setIsLogin,
-  //   isHideSidebarAndHeader,
-  //   setisHideSidebarAndHeader,
-  //   themeMode,
-  //   setThemeMode,
-  //   fetchLocationData, // Provide fetch function in context
-  //   currentLocationData, // Provide location data in context
-  //   isFetching, // Provide loading state in context
-  // };
   const values = {
     isToggleSidebar,
     setIsToggleSidebar,
@@ -170,6 +125,8 @@ const App = () => {
     setCurrentLocationData, // Allow resetting to current location
     currentLocationData, // Provide location data in context
     isFetching, // Provide loading state in context
+    name,
+    setName
   };
   
   return (

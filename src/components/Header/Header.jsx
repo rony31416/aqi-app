@@ -18,7 +18,7 @@ import { CgProfile } from "react-icons/cg";
 import { FaShieldAlt } from "react-icons/fa";
 import { Mycontext } from '../../App';
 import AIChatbotModal from './AIChatbotModal';
-
+import { auth } from '../../authService';
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -31,7 +31,7 @@ const Header = () => {
   };
 
   const handleMenuClose = () => {
-    setAnchorEl(true);
+    setAnchorEl(null);
   };
 
   return (
@@ -106,9 +106,9 @@ const Header = () => {
                         </span>
                       </div>
                       <div className="userInfo">
-                        <h4>Unknown</h4>
-                        <p className="mb-0">@userID</p>
-                      </div>
+                      <h4>{auth.currentUser?.displayName || "Unknown"}</h4>
+                      <p className="mb-0">{auth.currentUser?.email || "@userID"}</p>
+                    </div>
                     </Button>
                   </Tooltip>
 

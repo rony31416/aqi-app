@@ -1,4 +1,3 @@
-// src/authService.js
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, createUserWithEmailAndPassword } from "firebase/auth";
 import app from "./firebaseConfig";
 import { getFirestore } from "firebase/firestore";
@@ -23,13 +22,28 @@ export const signInWithEmail = async (email, password) => {
 
 // Sign in with Google
 export const signInWithGoogle = async () => {
-  return await signInWithPopup(auth, googleProvider);
+  try {
+    const result = await signInWithPopup(auth, googleProvider);
+    const user = result.user;
+    console.log('Google User:', user);
+    return user; // Return the user object from Google authentication
+  } catch (error) {
+    console.error("Error with Google Sign In:", error);
+    throw new Error("Google sign-in failed. Please try again.");
+  }
 };
 
 // Sign out
 export const signOutUser = async () => {
-  return await signOut(auth);
+  try {
+    await signOut(auth);
+  } catch (error) {
+    console.error("Sign out error:", error);
+  }
 };
 
+// Firebase Firestore instance
 export const db = getFirestore(app);
+
+// Export Firebase auth for use in other parts of the app
 export { auth };

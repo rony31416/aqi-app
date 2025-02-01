@@ -10,10 +10,9 @@ import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { auth } from '../authService';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-
+import { toast } from 'react-toastify';
+import { signInWithGoogle } from '../authService';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
@@ -21,8 +20,9 @@ const Login = () => {
   const [isShowPassword, setisShowPassword] = useState(false);
   const [email, setemail] = useState('');
   const [password, setpassword] = useState('');
-
+  const { setIsLogin } = useContext(Mycontext);  
   const context = useContext(Mycontext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     context.setisHideSidebarAndHeader(true);
@@ -36,12 +36,18 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password); 
+      const userCredential = await signInWithEmailAndPassword(auth, email, password); 
+      const user = userCredential.user;
       console.log("User Logged In Successfully");
+      
+      context.setIsLogin(true);
+      context.setName(user.displayName || 'User');
       toast.success("User Logged In Successfully", {
         position: "top-center",
         autoClose: 2000,
-      });           
+      }); 
+      setIsLogin(true);
+      navigate('/');          
     } catch (error) {
       console.log("Login Error:", error);
       toast.error(error.message, {
@@ -51,6 +57,31 @@ const Login = () => {
       
     }
   }
+
+  const handleGoogleLogin = async () => {
+    try {
+        const user = await signInWithGoogle(); // Google login
+        if (user) {
+            // Handle successful login
+            console.log("User logged in:", user);
+            context.setIsLogin(true);
+            context.setName(user.displayName || 'User');
+            toast.success('User Logged In with Google', {
+                position: 'top-center',
+                autoClose: 2000,
+            });
+            setIsLogin(true);
+            navigate('/');
+        }
+    } catch (error) {
+        console.log('Google Login Error:', error);
+        toast.error(error.message, {
+            position: 'bottom-center',
+            autoClose: 2000,
+        });
+    }
+};
+
 
   return (
     <section className="loginSection">
@@ -103,7 +134,7 @@ const Login = () => {
 
               <div className="googleSignIn">
                 <Button variant='outlined' className='w-100 btn-lg 
-            logInWithGoogle'>
+            logInWithGoogle'  onClick={handleGoogleLogin}>
                   <FcGoogle />
                   Sign in with Google
 

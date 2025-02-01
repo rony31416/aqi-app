@@ -13,9 +13,9 @@ import { IoHome } from "react-icons/io5";
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../authService';
 import { setDoc, doc } from 'firebase/firestore';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import {signInWithGoogle } from '../authService';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
 
@@ -26,7 +26,8 @@ const SignUp = () => {
     const [password, setpassword] = useState('');
 
     const context = useContext(Mycontext);
-    
+    const navigate = useNavigate();
+
     useEffect(() => {
         context.setisHideSidebarAndHeader(true);
     }, [context])
@@ -47,13 +48,14 @@ const SignUp = () => {
                     name: name,
                     email: user.email,
                 })
-            }
+            
             console.log("User Resgistred Successfully");
             toast.success("User Resgistred Successfully",{
                 position: "top-center",
                 autoClose: 2000,
             });
-
+            navigate('/Login');
+        }
         }catch(error){
             console.log("Sign Up Error:", error);
             toast.error(error.message, {
@@ -62,6 +64,33 @@ const SignUp = () => {
             });
         }
     }
+
+    const handleGoogleSignUp = async () => {
+        try {
+            const user = await signInWithGoogle(); // Google sign-up
+            if (user) {
+                // Save user info to Firestore if needed
+                const userRef = doc(db, 'users', user.uid);
+                await setDoc(userRef, {
+                    name: user.displayName,
+                    email: user.email,
+                    // other user details if necessary
+                });
+                toast.success('User Registered with Google', {
+                    position: 'top-center',
+                    autoClose: 2000,
+                });
+                navigate('/Login');
+            }
+        } catch (error) {
+            console.log('Google Sign Up Error:', error);
+            toast.error(error.message, {
+                position: 'bottom-center',
+                autoClose: 2000,
+            });
+        }
+    };
+    
 
     return (
         <section className="loginSection signUpSection">
@@ -141,7 +170,7 @@ const SignUp = () => {
 
                                     <div className="googleSignIn">
                                         <Button variant='outlined' className='w-100 btn-lg 
-          logInWithGoogle'>
+          logInWithGoogle' onClick={handleGoogleSignUp}>
                                             <FcGoogle />
                                             Sign Up with Google
 
