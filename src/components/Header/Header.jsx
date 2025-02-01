@@ -31,7 +31,7 @@ const Header = () => {
   };
 
   const handleMenuClose = () => {
-    setAnchorEl(null);
+    setAnchorEl(true);
   };
 
   return (

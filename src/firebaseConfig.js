@@ -5,16 +5,14 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDm6damSlhJrguQzSciUww1k8JUo6RYTAQ",
-  authDomain: "aqi-auth.firebaseapp.com",
-  projectId: "aqi-auth",
-  storageBucket: "aqi-auth.firebasestorage.app",
-  messagingSenderId: "778501719523",
-  appId: "1:778501719523:web:2cd1a4d6b78199ac278cd6"
+  apiKey: "AIzaSyBnG--rZvgbwfSdK8gUiT-ynZ7qm8yuONU",
+  authDomain: "login-auth-f8421.firebaseapp.com",
+  projectId: "login-auth-f8421",
+  storageBucket: "login-auth-f8421.firebasestorage.app",
+  messagingSenderId: "179151583490",
+  appId: "1:179151583490:web:e7d0647c88bb62febdaa1b"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-
-export default app; // Add this default export 
+export default app;

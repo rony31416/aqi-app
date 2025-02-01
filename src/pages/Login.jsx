@@ -8,22 +8,48 @@ import { IoMdEyeOff } from "react-icons/io";
 import Button from '@mui/material/Button';
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { auth } from '../authService';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const Login = () => {
 
   const [inputIndex, setinputIndex] = useState(null);
   const [isShowPassword, setisShowPassword] = useState(false);
+  const [email, setemail] = useState('');
+  const [password, setpassword] = useState('');
 
   const context = useContext(Mycontext);
 
   useEffect(() => {
     context.setisHideSidebarAndHeader(true);
-  }, [])
+  }, [context])
 
   const focusInput = (index) => {
     setinputIndex(index);
 
+  }
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await signInWithEmailAndPassword(auth, email, password); 
+      console.log("User Logged In Successfully");
+      toast.success("User Logged In Successfully", {
+        position: "top-center",
+        autoClose: 2000,
+      });           
+    } catch (error) {
+      console.log("Login Error:", error);
+      toast.error(error.message, {
+        position: "bottom-center",
+        autoClose: 2000,
+      });
+      
+    }
   }
 
   return (
@@ -35,16 +61,18 @@ const Login = () => {
         </div>
 
         <div className="wrapper">
-          <form action="">
+          <form onSubmit={handleLogin}>
             <div className={`from-group position-relative ${inputIndex === 0 && 'focus'}`}>
               <span className='icon'><MdEmail /></span>
               <input type="text" className='from-control' placeholder='Enter your email'
+                onChange={(e) => setemail(e.target.value)}
                 onFocus={() => focusInput(0)} onBlur={() => setinputIndex(null)} autoFocus/>
             </div>
 
             <div className={`from-group position-relative ${inputIndex === 1 && 'focus'}`}>
               <span className='icon'><RiLockPasswordFill /></span>
               <input type={`${isShowPassword === true ? 'text' : 'password'}`} className='from-control' placeholder='Enter your password'
+                onChange={(e) => setpassword(e.target.value)}
                 onFocus={() => focusInput(1)} onBlur={() => setinputIndex(null)} />
 
               <span className="toggleShowPassword" onClick={() =>
@@ -58,7 +86,7 @@ const Login = () => {
             </div>
 
             <div className="from-group ">
-              <Button className="btn-blue btn-lg w-100">Sign In</Button>
+              <Button type='submit' className="btn-blue btn-lg w-100">Sign In</Button>
             </div>
 
             <div className="from-group text-center mb-0">
