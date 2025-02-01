@@ -1419,3 +1419,23 @@ login section  */
 .safety-product-link:hover {
   text-decoration: underline;
 }
+
+
+
+/* Daily report   */
+
+.daily-report-container{
+  align-items: center;
+  justify-content: center;
+  margin: 90px auto !important;
+  overflow: hidden;
+  width: 90% !important;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 40px !important;
+  box-shadow: 0 8px 32px rgba(0, 115, 230, 0.15);
+  backdrop-filter: blur(10px);
+  animation: fadeInUp 0.8s ease-out;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  height: auto !important;
+}

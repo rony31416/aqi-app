@@ -12,13 +12,14 @@ import AirQualityIndex from './pages/AirQualityIndex.jsx'
 import AqiForecast from './pages/AqiForecast.jsx';
 import AqiRanking from './pages/AqiRanking.jsx'
 import SafetyMeasurement from './pages/SafetyMeasurement.jsx';
+import DailyReport from './pages/DailyReport.jsx';
 
 
 const Mycontext = createContext();
 
 const App = () => {
   const [isToggleSidebar, setIsToggleSidebar] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const [isHideSidebarAndHeader, setisHideSidebarAndHeader] = useState(false);
   const [themeMode, setThemeMode] = useState(true);
   const [currentLocationData, setCurrentLocationData] = useState({
@@ -119,6 +120,8 @@ const App = () => {
               <Route path="/forecast" exact element={<AqiForecast />} />
               <Route path="/aqi-ranking" exact element={<AqiRanking />} />
               <Route path="/safety" exact element={<SafetyMeasurement />} />
+              <Route path='/daily-report' exact element={<DailyReport />} />
+              
               
             </Routes>
           </div>
