@@ -1439,3 +1439,25 @@ login section  */
   border: 1px solid rgba(255, 255, 255, 0.2);
   height: auto !important;
 }
+
+/* searchbox */.suggestions-list {
+  position: absolute;
+  width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  list-style: none;
+  padding: 0;
+  margin-top: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.suggestions-list li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestions-list li:hover {
+  background: #f0f0f0;
+}

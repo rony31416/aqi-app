@@ -44,38 +44,98 @@ const App = () => {
   }, [themeMode]);
 
   // Fetch location data and store it in context
-  const fetchLocationData = async () => {
+  // const fetchLocationData = async () => {
+  //   setIsFetching(true);
+  //   navigator.geolocation.getCurrentPosition(async (position) => {
+  //     const { latitude, longitude } = position.coords;
+  //     const aqicnToken = import.meta.env.VITE_AQICN_API_TOKEN;
+  //     const weatherApiKey = import.meta.env.VITE_WEATHER_API_KEY;
+
+  //     try {
+  //       const aqiResponse = await fetch(
+  //         `https://api.waqi.info/feed/geo:${latitude};${longitude}/?token=${aqicnToken}`
+  //       );
+  //       const aqiData = await aqiResponse.json();
+
+  //       const weatherResponse = await fetch(
+  //         `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=metric`
+  //       );
+  //       const weatherData = await weatherResponse.json();
+
+  //       setCurrentLocationData({
+  //         aqiDataJson: aqiData || "N/A",
+  //         aqi: aqiData.data.aqi || "N/A",
+  //         temperature: weatherData.main.temp || "N/A",
+  //         humidity: weatherData.main.humidity || "N/A",
+  //         location: weatherData.name || "N/A",
+  //       });
+  //     } catch (error) {
+  //       console.error("Error fetching location data:", error);
+  //     } finally {
+  //       setIsFetching(false);
+  //     }
+  //   });
+  // };
+  const fetchLocationData = async (searchLocation = null) => {
     setIsFetching(true);
-    navigator.geolocation.getCurrentPosition(async (position) => {
-      const { latitude, longitude } = position.coords;
-      const aqicnToken = import.meta.env.VITE_AQICN_API_TOKEN;
-      const weatherApiKey = import.meta.env.VITE_WEATHER_API_KEY;
-
-      try {
-        const aqiResponse = await fetch(
-          `https://api.waqi.info/feed/geo:${latitude};${longitude}/?token=${aqicnToken}`
+    const aqicnToken = import.meta.env.VITE_AQICN_API_TOKEN;
+    const weatherApiKey = import.meta.env.VITE_WEATHER_API_KEY;
+  
+    try {
+      let latitude, longitude, locationName;
+  
+      if (searchLocation) {
+        // Fetch coordinates based on searched city name
+        const geoResponse = await fetch(
+          `https://api.openweathermap.org/geo/1.0/direct?q=${searchLocation}&limit=1&appid=${weatherApiKey}`
         );
-        const aqiData = await aqiResponse.json();
-
-        const weatherResponse = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=metric`
-        );
-        const weatherData = await weatherResponse.json();
-
-        setCurrentLocationData({
-          aqiDataJson: aqiData || "N/A",
-          aqi: aqiData.data.aqi || "N/A",
-          temperature: weatherData.main.temp || "N/A",
-          humidity: weatherData.main.humidity || "N/A",
-          location: weatherData.name || "N/A",
+        const geoData = await geoResponse.json();
+  
+        if (geoData.length === 0) {
+          console.error("Location not found");
+          setIsFetching(false);
+          return;
+        }
+  
+        latitude = geoData[0].lat;
+        longitude = geoData[0].lon;
+        locationName = geoData[0].name;
+      } else {
+        // Use device's current location when no search is made
+        const position = await new Promise((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject);
         });
-      } catch (error) {
-        console.error("Error fetching location data:", error);
-      } finally {
-        setIsFetching(false);
+  
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
       }
-    });
+  
+      // Fetch AQI Data
+      const aqiResponse = await fetch(
+        `https://api.waqi.info/feed/geo:${latitude};${longitude}/?token=${aqicnToken}`
+      );
+      const aqiData = await aqiResponse.json();
+  
+      // Fetch Weather Data
+      const weatherResponse = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=metric`
+      );
+      const weatherData = await weatherResponse.json();
+  
+      setCurrentLocationData({
+        aqiDataJson: aqiData || "N/A",
+        aqi: aqiData.data.aqi || "N/A",
+        temperature: weatherData.main.temp || "N/A",
+        humidity: weatherData.main.humidity || "N/A",
+        location: locationName || weatherData.name || "N/A",
+      });
+    } catch (error) {
+      console.error("Error fetching location data:", error);
+    } finally {
+      setIsFetching(false);
+    }
   };
+  
 
   useEffect(() => {
     fetchLocationData(); // Initial fetch
@@ -84,6 +144,19 @@ const App = () => {
     return () => clearInterval(intervalId);
   }, []);
 
+  // const values = {
+  //   isToggleSidebar,
+  //   setIsToggleSidebar,
+  //   isLogin,
+  //   setIsLogin,
+  //   isHideSidebarAndHeader,
+  //   setisHideSidebarAndHeader,
+  //   themeMode,
+  //   setThemeMode,
+  //   fetchLocationData, // Provide fetch function in context
+  //   currentLocationData, // Provide location data in context
+  //   isFetching, // Provide loading state in context
+  // };
   const values = {
     isToggleSidebar,
     setIsToggleSidebar,
@@ -93,11 +166,12 @@ const App = () => {
     setisHideSidebarAndHeader,
     themeMode,
     setThemeMode,
-    fetchLocationData, // Provide fetch function in context
+    fetchLocationData, // Expose fetch function for searching
+    setCurrentLocationData, // Allow resetting to current location
     currentLocationData, // Provide location data in context
     isFetching, // Provide loading state in context
   };
-
+  
   return (
     <BrowserRouter>
       <Mycontext.Provider value={values}>
@@ -121,7 +195,7 @@ const App = () => {
               <Route path="/aqi-ranking" exact element={<AqiRanking />} />
               <Route path="/safety" exact element={<SafetyMeasurement />} />
               <Route path='/daily-report' exact element={<DailyReport />} />
-              
+
               
             </Routes>
           </div>
