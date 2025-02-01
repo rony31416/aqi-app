@@ -133,7 +133,7 @@ const Sidebar = () => {
                 </li>
 
                 <li>
-                    <Link to="/">
+                    <Link to="/daily-report">
                     <Button className={`w-100 ${activeTab===7 ? 'active' : ''}`} onClick={()=>isOpenSubMenu(7)} >
                             <span className='icon'>
                                 <TbReport />
