@@ -1,6 +1,7 @@
 // src/authService.js
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, createUserWithEmailAndPassword } from "firebase/auth";
 import app from "./firebaseConfig";
+import { getFirestore } from "firebase/firestore";
 
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
@@ -30,4 +31,5 @@ export const signOutUser = async () => {
   return await signOut(auth);
 };
 
+export const db = getFirestore(app);
 export { auth };

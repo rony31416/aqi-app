@@ -10,22 +10,57 @@ import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { FaUser } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth, db } from '../authService';
+import { setDoc, doc } from 'firebase/firestore';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const SignUp = () => {
 
     const [inputIndex, setinputIndex] = useState(null);
     const [isShowPassword, setisShowPassword] = useState(false);
+    const [name, setname] = useState('');
+    const [email, setemail] = useState('');
+    const [password, setpassword] = useState('');
 
     const context = useContext(Mycontext);
-
+    
     useEffect(() => {
         context.setisHideSidebarAndHeader(true);
-    }, [])
+    }, [context])
 
     const focusInput = (index) => {
         setinputIndex(index);
 
+    }
+
+    const handleSignUp = async(e) => {
+        e.preventDefault();
+        try{
+            await createUserWithEmailAndPassword(auth, email, password);
+            const user = auth.currentUser;
+            console.log("User:", user);
+            if(user){
+                await setDoc(doc(db, "users", user.uid), {
+                    name: name,
+                    email: user.email,
+                })
+            }
+            console.log("User Resgistred Successfully");
+            toast.success("User Resgistred Successfully",{
+                position: "top-center",
+                autoClose: 2000,
+            });
+
+        }catch(error){
+            console.log("Sign Up Error:", error);
+            toast.error(error.message, {
+                position: "bottom-center",
+                autoClose: 2000,
+            });
+        }
     }
 
     return (
@@ -57,22 +92,25 @@ const SignUp = () => {
                         </div>
 
                         <div className="wrapper">
-                            <form action="">
+                            <form onSubmit={handleSignUp}>
 
                                 <div className={`from-group position-relative ${inputIndex === 0 && 'focus'}`}>
                                     <span className='icon'><FaUser /></span>
                                     <input type="text" className='from-control' placeholder='Enter your name'
+                                        value={name} onChange={(e) => setname(e.target.value)}  
                                         onFocus={() => focusInput(0)} onBlur={() => setinputIndex(null)} autoFocus />
                                 </div>
                                 <div className={`from-group position-relative ${inputIndex === 1 && 'focus'}`}>
                                     <span className='icon'><MdEmail /></span>
                                     <input type="text" className='from-control' placeholder='Enter your email'
+                                        value={email} onChange={(e) => setemail(e.target.value)}    
                                         onFocus={() => focusInput(1)} onBlur={() => setinputIndex(null)} />
                                 </div>
 
                                 <div className={`from-group position-relative ${inputIndex === 2 && 'focus'}`}>
                                     <span className='icon'><RiLockPasswordFill /></span>
                                     <input type={`${isShowPassword === true ? 'text' : 'password'}`} className='from-control' placeholder='Enter your password'
+                                        value={password} onChange={(e) => setpassword(e.target.value)}      
                                         onFocus={() => focusInput(2)} onBlur={() => setinputIndex(null)} />
 
                                     <span className="toggleShowPassword" onClick={() =>
@@ -86,7 +124,7 @@ const SignUp = () => {
                                 </div>
 
                                 <div className="from-group ">
-                                    <Button className="btn-blue btn-lg w-100">Sign Up</Button>
+                                    <Button type='submit' className="btn-blue btn-lg w-100">Sign Up</Button>
                                 </div>
 
                                 <div className="from-group text-center mb-0">
@@ -128,3 +166,4 @@ const SignUp = () => {
 }
 
 export default SignUp;
+
