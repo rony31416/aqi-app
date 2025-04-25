@@ -109,24 +109,15 @@ const Sidebar = () => {
                 </li>
 
                 <li>
-                    <Button
-                        className={`w-100 ${activeTab === 6 ? 'active' : ''}`}
-                        onClick={() => {
-                            isOpenSubMenu(6);
-                            setIsChatbotOpen(true); // Open the modal when the button is clicked
-                        }}
-                    >
-                        <span className="icon">
-                            <HelpOutlineIcon />
-                        </span>
-                        Recommendations
-                    </Button>
-
-                    {/* AIChatbotModal is now outside the Button and managed by state */}
-                    <AIChatbotModal
-                        open={isChatbotOpen}
-                        onClose={() => setIsChatbotOpen(false)} // Close the modal
-                    />
+                    <Link to="/recommerndations">
+                    <Button className={`w-100 ${activeTab===6 ? 'active' : ''}`} onClick={()=>isOpenSubMenu(6)} >
+                            <span className='icon'>
+                                <HelpOutlineIcon />
+                            </span>
+                            Recommendations
+                        </Button>
+                    </Link>
+                
                 </li>
 
                 <li>
@@ -141,7 +132,7 @@ const Sidebar = () => {
                 </li>
 
                 <li>
-                    <Link to="/">
+                    <Link to="/notification">
                         <Button className={`w-100 ${activeTab === 8 ? 'active' : ''}`} onClick={() => isOpenSubMenu(8)}>
                             <span className='icon'>
                                 <SettingsIcon />
